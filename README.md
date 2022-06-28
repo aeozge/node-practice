@@ -1,2 +1,3 @@
 # node-practice
-A repository for Node.js
+
+A compilation of work completed from Udemy and personal mini-projects.
