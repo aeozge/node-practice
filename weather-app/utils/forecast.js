@@ -12,15 +12,13 @@ const forecast = (latitude, longitude, callback) => {
 
   request({ url, json: true }, (error, { body }) => {
     if (error) {
-      callback("Unable to connect to weather service!");
+      callback("Unable to connect to weather service!", undefined);
     } else if (body.error) {
-      callback("Unable to find the location!");
+      callback("Unable to find the location!", undefined);
     } else {
-      callback({
-        description: "It is currently " + body.current.weather_descriptions[0],
-        temperature: " The temperature " + body.current.temperature + " degress out.",
-        precip: "There is a " + body.current.precip + " % chance of rain.",
-      });
+      callback(undefined, "It is currently " + body.current.weather_descriptions[0] + " The temperature " + body.current.temperature + " degress out." + "There is a " + body.current.precip + " % chance of rain."
+      );
+      console.log( "It is currently " + body.current.weather_descriptions[0]+ " The temperature " + body.current.temperature + " degress out." + "There is a " + body.current.precip + " % chance of rain." )
     }
   });
 };

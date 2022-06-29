@@ -8,15 +8,18 @@ const geocode = (address, callback) => {
 
   request({ url, json: true }, (error, { body }) => {
     if (error) {
-      callback("Unable to connect to weather service!");
+      callback("Unable to connect to weather service!", undefined)
     } else if (body.data.length === 0) {
-      callback("Unable to find the location!");
+      callback("Unable to find the location!", undefined)
     } else {
       callback(undefined, {
         latitude: body.data[0].latitude,
         longitude: body.data[0].longitude,
-        location: body.data[0].name,
+        location: body.data[0].name
       });
+      console.log('latitude:', body.data[0].latitude,
+        'longitude:', body.data[0].longitude,
+       'location:', body.data[0].name)
     }
   });
 };
