@@ -5,16 +5,12 @@ const connectDB = require('./db/mongoose')
 require('dotenv').config()
 
 // middleware
+app.use(express.static('./public'))
 app.use(express.json());
 
 // routes
-
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-  console.log("fefef");
-});
-
 app.use("/tasks", tasks);
+
 
 const port = process.env.PORT || 3000;
 
