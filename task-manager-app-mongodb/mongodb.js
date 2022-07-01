@@ -16,18 +16,22 @@ MongoClient.connect(
     console.log("connected correctly");
 
     const db = client.db(databaseName);
-    /*
-    db.collection('users').insertOne({
-        name: 'Leo',
-        age : 27
-    }, (error, result) => {
-        if(error){
-            return console.log('Unable to insert user')
-        }
-        console.log(result.ops)
-    })
-    */
 
+    // Insert a user
+    db.collection("users").insertOne(
+      {
+        name: "Leo",
+        age: 27,
+      },
+      (error, result) => {
+        if (error) {
+          return console.log("Unable to insert user");
+        }
+        console.log(result.ops);
+      }
+    );
+
+    // Insert more than one user
     db.collection("users").insertMany(
       [
         {
@@ -47,6 +51,7 @@ MongoClient.connect(
       }
     );
 
+    // Insert more than one tasks
     db.collection("tasks").insertMany(
       [
         {
@@ -70,6 +75,7 @@ MongoClient.connect(
       }
     );
 
+    // Find a task by its id
     db.collection("tasks").findOne(
       { _id: new ObjectID("62bcbe4c214c003065a87502") },
       (error, task) => {
@@ -77,6 +83,7 @@ MongoClient.connect(
       }
     );
 
+    // Update tasks which are incompleted to completed
     db.collection("tasks")
       .updateMany(
         {
@@ -95,6 +102,7 @@ MongoClient.connect(
         console.log(error);
       });
 
+    // Delete tasks which have completed
     db.collection("tasks")
       .deleteMany({
         completed: true,
